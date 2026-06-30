@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results Generation — Partner Brief · AIE World's Fair 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ RG BRAND TOKENS ============
+     Navy (bg)     #25333C   — from resgen.us
+     Orange        #F26B3A   — brand / action
+     Near-white    #F4F7F7   — headings
+     Muted slate   #8B9BA3   — labels / secondary
+  ========================================== */
+  :root{
+    --navy:#25333C; --navy-deep:#1A2227; --surface:#2E3D46; --surface-2:#374852;
+    --ink:#F4F7F7; --text:#C3CDD2; --muted:#8B9BA3;
+    --orange:#F26B3A; --orange-deep:#D6592B;
+    --hairline:rgba(255,255,255,.10); --hairline-2:rgba(255,255,255,.17);
+    --display:'Poppins', -apple-system, 'Segoe UI', sans-serif;
+    --sans:'Archivo', -apple-system, 'Segoe UI', sans-serif;
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{background:var(--navy-deep);font-family:var(--sans);color:var(--text);
+       display:flex;justify-content:center;padding:24px 12px;}
+
+  .sheet{
+    background:var(--navy); width:8.5in; min-height:11in; max-width:100%;
+    padding:.5in .56in .46in; box-shadow:0 10px 40px rgba(0,0,0,.5);
+    display:flex; flex-direction:column;
+    border-top:3px solid var(--orange);
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead{display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--hairline-2);padding-bottom:9px;}
+  .wordmark{font-family:var(--display);font-weight:500;font-size:15px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--orange);}
+  .wordmark b{font-weight:700;}
+  .context{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;
+    color:var(--muted);text-transform:uppercase;}
+
+  /* ---------- Thesis ---------- */
+  .thesis{padding:17px 0 4px;}
+  .kicker{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+  h1{font-family:var(--display);font-weight:600;font-size:30px;line-height:1.14;
+     letter-spacing:-.005em;color:var(--ink);max-width:7in;}
+  h1 .pay{color:var(--orange);}
+  .dek{font-size:11.5px;line-height:1.5;color:var(--text);max-width:7in;margin-top:10px;}
+  .dek b{color:var(--ink);font-weight:600;}
+
+  /* ---------- Signature: the transition window ---------- */
+  .window{margin:15px 0 13px;}
+  .window-track{position:relative;height:34px;}
+  .window-line{position:absolute;top:16px;left:0;right:0;height:1px;background:var(--hairline);}
+  .window-band{position:absolute;top:5px;left:30%;width:40%;height:23px;
+    background:rgba(242,107,58,.14);border-left:2px solid var(--orange);
+    border-right:2px solid var(--orange);}
+  .window-band .band-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:.1em;
+    color:var(--orange);text-transform:uppercase;white-space:nowrap;}
+  .window-end{position:absolute;top:16px;width:5px;height:5px;border-radius:50%;
+    background:var(--muted);transform:translateY(-2px);}
+  .window-end.l{left:6%;} .window-end.r{right:6%;}
+  .window-caps{display:flex;justify-content:space-between;font-family:var(--mono);
+    font-size:8px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;
+    padding:2px 4% 0;}
+  .window-note{font-size:9.5px;color:var(--muted);font-style:italic;
+    text-align:center;margin-top:5px;}
+
+  /* ---------- Funnel stat strip ---------- */
+  .stats{border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+    padding:10px 0 9px;margin-bottom:16px;}
+  .funnel-eyebrow{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:7px;}
+  .funnel-eyebrow b{color:var(--orange);}
+  .stat-row{display:flex;align-items:center;justify-content:center;gap:2px;}
+  .stat{text-align:center;padding:0 12px;flex:0 0 auto;}
+  .stat .v{font-family:var(--mono);font-weight:600;font-size:17px;color:var(--ink);line-height:1;}
+  .stat .v .hot{color:var(--orange);}
+  .stat .k{font-size:8px;text-transform:uppercase;letter-spacing:.09em;
+    color:var(--muted);margin-top:4px;font-weight:600;}
+  .stat .sub{font-size:7.5px;color:var(--muted);margin-top:2px;opacity:.8;}
+  .flow{color:var(--orange);font-size:14px;font-weight:700;padding:0 2px;align-self:flex-start;
+    margin-top:4px;}
+  .sep{width:1px;align-self:stretch;background:var(--hairline-2);margin:0 10px;}
+  .stat.context{padding:0 14px;}
+  .stat.context .v{font-size:15px;}
+
+  /* ---------- Two columns ---------- */
+  .cols{display:grid;grid-template-columns:1.16fr .84fr;gap:.32in;flex:1;}
+  .col-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--orange);padding-bottom:6px;
+    border-bottom:1px solid var(--hairline);margin-bottom:10px;}
+
+  /* Tiers (left) */
+  .tier{display:grid;grid-template-columns:64px 1fr;gap:10px;margin-bottom:10px;}
+  .tier-tag{font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:.08em;
+    color:var(--muted);background:var(--surface-2);text-align:center;align-self:start;
+    padding:3px 0;border-radius:2px;text-transform:uppercase;}
+  .tier.premium .tier-tag{color:var(--navy);background:var(--orange);}
+  .tier h3{font-family:var(--display);font-size:13px;font-weight:600;color:var(--ink);
+    margin-bottom:2px;letter-spacing:-.005em;}
+  .tier p{font-size:9.8px;line-height:1.45;color:var(--text);}
+  .tier p b{color:var(--ink);font-weight:600;}
+  .tier + .tier-sub{margin-top:-4px;}
+  .tier-divider{border:none;border-top:1px dotted var(--hairline-2);margin:1px 0 10px 74px;}
+
+  /* Demoted side option */
+  .side-option{margin:5px 0 0 74px;padding:7px 11px;background:var(--surface);
+    border-radius:2px;font-size:9.3px;line-height:1.45;color:var(--text);}
+  .side-option b{color:var(--ink);font-weight:600;}
+  .side-option .so-tag{font-family:var(--mono);font-size:8px;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+
+  /* Right column */
+  .why p{font-size:9.8px;line-height:1.5;color:var(--text);margin-bottom:8px;}
+  .why p b{color:var(--ink);font-weight:600;}
+  .fit{margin:4px 0 6px;}
+  .fit-row{display:flex;align-items:baseline;gap:8px;padding:4.5px 0;
+    border-bottom:1px dotted var(--hairline);font-size:9.8px;}
+  .fit-row:last-child{border-bottom:none;}
+  .fit-row .who{font-weight:600;white-space:nowrap;color:var(--ink);}
+  .fit-row .what{color:var(--muted);font-size:9.3px;line-height:1.35;}
+  .fit-foot{font-size:9px;line-height:1.4;color:var(--muted);margin:0 0 12px;}
+  .trust{background:var(--surface);border-left:3px solid var(--orange);
+    padding:9px 11px;font-size:9.3px;line-height:1.5;color:var(--text);}
+  .trust b{color:var(--ink);font-weight:700;}
+
+  /* ---------- Business card ---------- */
+  .card{margin-top:14px;background:var(--surface);border:1px solid var(--hairline-2);
+    border-top:3px solid var(--orange);border-radius:4px;overflow:hidden;}
+  .card-cta{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+    padding:11px 16px 9px;border-bottom:1px solid var(--hairline);}
+  .card-cta .ask{font-family:var(--display);font-weight:600;font-size:14px;color:var(--ink);
+    white-space:nowrap;}
+  .card-cta .ask span{color:var(--orange);}
+  .card-cta .terms{font-family:var(--mono);font-size:8px;letter-spacing:.04em;
+    color:var(--muted);text-transform:uppercase;line-height:1.5;}
+  .card-body{display:grid;grid-template-columns:1.1fr 1.2fr auto;align-items:center;
+    gap:16px;padding:13px 16px;}
+  .card-id .card-name{font-family:var(--display);font-weight:600;font-size:15px;color:var(--ink);
+    letter-spacing:-.01em;}
+  .card-id .card-title{font-size:9.5px;color:var(--orange);font-weight:600;margin-top:2px;}
+  .card-id .card-org{font-size:9px;color:var(--muted);margin-top:2px;}
+  .card-contact{display:flex;flex-direction:column;gap:6px;
+    border-left:1px solid var(--hairline-2);padding-left:16px;}
+  .contact-row{display:flex;align-items:center;gap:8px;font-size:9.8px;color:var(--text);
+    text-decoration:none;}
+  .contact-row:hover{color:var(--ink);}
+  .contact-row .ic{color:var(--orange);display:flex;align-items:center;flex:0 0 auto;}
+  .card-qr{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .card-qr img{width:.66in;height:.66in;display:block;border-radius:3px;
+    background:#fff;padding:3px;}
+  .card-qr .qr-cap{font-family:var(--mono);font-size:7px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);}
+
+  /* ---------- Footer ---------- */
+  .footnote{margin-top:9px;font-family:var(--mono);font-size:7.5px;
+    color:var(--muted);display:flex;justify-content:space-between;}
+  .footnote .b{color:var(--orange);}
+
+  /* ---------- Print ---------- */
+  @page{size:letter;margin:0;}
+  @media print{
+    body{background:var(--navy);padding:0;display:block;}
+    .sheet{box-shadow:none;width:100%;min-height:auto;padding:.42in .5in .38in;}
+  }
+  @media (max-width:760px){
+    .sheet{padding:24px 18px;min-height:auto;}
+    .cols{grid-template-columns:1fr;}
+    .tier-divider,.side-option{margin-left:0;}
+    .stat-row{flex-wrap:wrap;gap:6px;}
+    .sep{display:none;}
+    .card-body{grid-template-columns:1fr;}
+    .card-contact{border-left:none;padding-left:0;}
+    h1{font-size:23px;}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .window-band{animation:bandIn .9s ease-out;}
+    @keyframes bandIn{from{opacity:0;}to{opacity:1;}}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- Masthead — wordmark in brand orange. Drop in the official RG logo SVG/PNG here if you want the mark. -->
+  <header class="masthead">
+    <div class="wordmark"><b>Results</b> Generation</div>
+    <div class="context">Partner Brief · AI Engineer World's Fair · SF · June 2026</div>
+  </header>
+
+  <!-- Thesis -->
+  <section class="thesis">
+    <div class="kicker">A live audience of people in transition</div>
+    <h1>The audience everyone's trying to simulate.<br><span class="pay">We have the humans.</span></h1>
+    <p class="dek">Results Generation runs job boards across <b>17 countries</b>. Each day,
+    <b>25M emails</b> move <b>3.2M job seekers</b> into live search sessions, and
+    <b>1.5M of them take a real action</b> — an application, a registration. No one channels a
+    person from inbox to outcome the way we do. We're opening that funnel to AI products that
+    need real humans, fast: for activation, for placement, and for the human data simulated
+    agents can't supply.</p>
+  </section>
+
+  <!-- Signature: the transition window -->
+  <section class="window" aria-label="The transition window diagram">
+    <div class="window-track">
+      <div class="window-line"></div>
+      <div class="window-end l"></div>
+      <div class="window-end r"></div>
+      <div class="window-band"><span class="band-label">The Transition Window</span></div>
+    </div>
+    <div class="window-caps"><span>Old routine</span><span>New routine</span></div>
+    <p class="window-note">Behavioral science calls it habit discontinuity. Growth teams will
+    recognize it as the cheapest activation they'll ever buy — and we deliver it at volume.</p>
+  </section>
+
+  <!-- Funnel stat strip — reads left to right: EMAIL -> SESSION -> CONVERSION -->
+  <!-- FIGURES (confirmed by Jacob/RG): 25M emails/day · 3.2M sessions · 1.5M conversions
+       (a conversion = application, registration, etc).
+       PERIOD: read as daily for a coherent funnel (25M emails -> 3.2M sessions -> 1.5M conversions).
+       Confirm daily vs monthly before printing. -->
+  <!-- COUNTRY LIST (from Mike's notes): AU, BR, CA, DE, ES, FR, GB, ID, IN, IT, MX, MY, NL, SG, US, ZA
+       NOTE: note says 17, list enumerates 16 ISO codes. Confirm the 17th market, or set to 16. -->
+  <section class="stats">
+    <div class="funnel-eyebrow">The funnel &mdash; <b>every day</b></div>
+    <div class="stat-row">
+      <div class="stat"><div class="v">25M</div><div class="k">Emails</div></div>
+      <div class="flow">&rarr;</div>
+      <div class="stat"><div class="v">3.2M</div><div class="k">Sessions</div></div>
+      <div class="flow">&rarr;</div>
+      <div class="stat"><div class="v"><span class="hot">1.5M</span></div><div class="k">Conversions</div><div class="sub">applications · registrations</div></div>
+      <div class="sep"></div>
+      <div class="stat context"><div class="v">17</div><div class="k">Country markets</div></div>
+      <div class="stat context"><div class="v">PhD</div><div class="k">Led measurement</div></div>
+    </div>
+  </section>
+
+  <!-- Body columns -->
+  <div class="cols">
+
+    <!-- LEFT: channels by tier of attention -->
+    <section>
+      <div class="col-label">Channels — broad reach to premium attention</div>
+
+      <div class="tier">
+        <div class="tier-tag">Reach</div>
+        <div>
+          <h3>In-search ad units</h3>
+          <p>Native units inside <b>live job-search results</b> — our highest-intent moment.
+          Drive users straight to your page to <b>sign up, engage, or apply</b>, customized by
+          <b>keyword, traffic source, and creative</b> across flexible mediums and volume. The
+          engine that moves users at scale.</p>
+        </div>
+      </div>
+      <div class="tier tier-sub">
+        <div class="tier-tag">Reach</div>
+        <div>
+          <h3>Direct email</h3>
+          <p>Sponsored modules and dedicated sends through
+          <b>deliverability-engineered lifecycle programs</b> — placement where inboxing
+          actually happens, segmented to the seekers your product serves.</p>
+        </div>
+      </div>
+      <hr class="tier-divider">
+
+      <div class="tier premium">
+        <div class="tier-tag">Premium</div>
+        <div>
+          <h3>SMS &amp; direct mail</h3>
+          <p>When a moment deserves more than an impression. <b>SMS</b> reaches the device with
+          near-universal open rates; <b>addressed direct mail</b> lands physically, impossible to
+          scroll past. Higher-attention placements for partners who want depth, not just reach.</p>
+        </div>
+      </div>
+      <hr class="tier-divider">
+
+      <div class="tier">
+        <div class="tier-tag">Data</div>
+        <div>
+          <h3>Panels, studies &amp; human data</h3>
+          <p>Opt-in cohorts of <b>real job seekers</b> for user research, beta access, human
+          trials, and preference / eval data — recruitable by archetype, measurable against real
+          outcomes. <b>Simulated agents are infinite; humans in transition are scarce.</b> We have
+          them at volume.</p>
+        </div>
+      </div>
+
+      <div class="side-option">
+        <span class="so-tag">Also available · </span><b>Performance pilots</b> — pay per activated
+        user (CPL / CPA) when a specific campaign calls for it, measured against your activation event.
+      </div>
+    </section>
+
+    <!-- RIGHT: why this audience -->
+    <section class="why">
+      <div class="col-label">Why this audience, why now</div>
+      <p><b>Scarce supply.</b> Anyone can spin up simulated agents; <b>real humans in transition
+      are the bottleneck</b> — and we channel them at a scale almost no one can match.</p>
+      <p><b>Decision density.</b> In one season a person re-chooses budgeting, coverage, skills,
+      daily tools, and routines. Your category is on that list.</p>
+      <p><b>Receptivity.</b> New-tool adoption peaks during transitions — you skip the
+      habit-inertia tax that eats most growth spend.</p>
+
+      <div class="col-label" style="margin-top:12px;">Who this is built for</div>
+      <div class="fit">
+        <div class="fit-row"><span class="who">High volume, fast</span>
+          <span class="what">campaigns that need real users now, at scale</span></div>
+        <div class="fit-row"><span class="who">Registrations &amp; sign-ups</span>
+          <span class="what">paid against the action that matters to you</span></div>
+        <div class="fit-row"><span class="who">Training &amp; eval data</span>
+          <span class="what">human feedback and trials, not synthetic</span></div>
+        <div class="fit-row"><span class="who">Placement &amp; routing</span>
+          <span class="what">channel users into your product or flow</span></div>
+      </div>
+      <p class="fit-foot">Natural fits: agentic &amp; consumer AI, eval / data teams, fintech,
+      and upskilling — anywhere job search is the on-ramp.</p>
+
+      <div class="trust"><b>The audience stays ours to protect.</b> Every program is opt-in,
+      frequency-capped, and RG-mediated — partners never touch the list. Built and measured by a
+      team with <b>decades of media and behavioral-science experience</b>; governed like a study,
+      delivered like media.</div>
+    </section>
+  </div>
+
+  <!-- Business card -->
+  <section class="card">
+    <div class="card-cta">
+      <span class="ask">Run a <span>two-week pilot.</span></span>
+      <span class="terms">One segment · one market · one activation metric — we bring the volume and the measurement, you bring the product.</span>
+    </div>
+    <div class="card-body">
+      <div class="card-id">
+        <div class="card-name">Jacob E. Thomas, PhD</div>
+        <div class="card-title">Principal Investigator · LAMP Lab</div>
+        <div class="card-org">Results Generation · Austin, TX</div>
+      </div>
+      <div class="card-contact">
+        <a class="contact-row" href="mailto:JEThomasPhD@gmail.com">
+          <span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></span>
+          <span>JEThomasPhD@gmail.com</span>
+        </a>
+        <a class="contact-row" href="https://www.linkedin.com/in/jacob-e-thomas-atx/">
+          <span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.25 8h4.5V24H.25V8zM8 8h4.31v2.19h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.4c0-1.53-.03-3.5-2.13-3.5-2.13 0-2.46 1.66-2.46 3.38V24H8V8z"/></svg></span>
+          <span>linkedin.com/in/jacob-e-thomas-atx</span>
+        </a>
+      </div>
+      <div class="card-qr">
+        <img src="data:image/png;base64,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" alt="Scan to connect on LinkedIn">
+        <span class="qr-cap">Scan → LinkedIn</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footnote">
+    <span>Figures: Results Generation internal · June 2026</span>
+    <span><span class="b">resgen.us</span> · Partner Brief v3</span>
+  </footer>
+
+</div>
+</body>
+</html>
